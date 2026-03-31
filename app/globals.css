@@ -1,32 +1,28 @@
 @import "tailwindcss";
 
-:root {
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #0f1629;
-  --bg-card: #111827;
-  --border: #1e293b;
-  --text-primary: #e2e8f0;
-  --text-muted: #64748b;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --blue: #3b82f6;
-}
+@layer base {
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #0f1629;
+    --bg-card: #111827;
+    --border: #1e293b;
+    --text-primary: #e2e8f0;
+    --text-muted: #64748b;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --blue: #3b82f6;
+  }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-jetbrains-mono), "Fira Code", "Cascadia Code", "Menlo",
-    "Monaco", "Consolas", monospace;
-  min-height: 100vh;
-  overflow-x: hidden;
+  html,
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-jetbrains-mono), "Fira Code", "Cascadia Code", "Menlo",
+      "Monaco", "Consolas", monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 }
 
 /* Cursor blink */
