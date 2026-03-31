@@ -96,10 +96,16 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     async function load() {
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("요청 시간 초과 (10초) — Firebase 연결 또는 보안 규칙을 확인하세요")), 10000)
+      );
       try {
-        const [recentData, rankingData] = await Promise.all([
-          getRecentScores(15),
-          tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50),
+        const [recentData, rankingData] = await Promise.race([
+          Promise.all([
+            getRecentScores(15),
+            tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50),
+          ]),
+          timeout,
         ]);
         setRecent(recentData);
         setRanking(rankingData);
