@@ -96,22 +96,26 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     async function load() {
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error("요청 시간 초과 (10초) — Firebase 연결 또는 보안 규칙을 확인하세요")), 10000)
-      );
       try {
-        const [recentData, rankingData] = await Promise.race([
-          Promise.all([
-            getRecentScores(15),
-            tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50),
-          ]),
-          timeout,
-        ]);
+        console.log("🔥 Firebase 연결 시도...");
+        const recentData = await getRecentScores(15).catch((e) => {
+          console.error("❌ getRecentScores 에러:", e?.code, e?.message, e);
+          throw e;
+        });
+        console.log("✅ getRecentScores 성공:", recentData.length);
+
+        const rankingData = await (tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50)).catch((e) => {
+          console.error("❌ getRanking 에러:", e?.code, e?.message, e);
+          throw e;
+        });
+        console.log("✅ getRanking 성공:", rankingData.length);
+
         setRecent(recentData);
         setRanking(rankingData);
       } catch (e) {
         console.error("leaderboard load error:", e);
-        const msg = e instanceof Error ? e.message : String(e);
+        const err = e as { code?: string; message?: string };
+        const msg = err.code ? `[${err.code}] ${err.message}` : (e instanceof Error ? e.message : String(e));
         setError(`데이터를 불러오지 못했어요: ${msg}`);
       } finally {
         setLoading(false);
