@@ -20,6 +20,13 @@ const GRADE_BADGE: Record<string, { label: string; cls: string }> = {
   fail:   { label: "도전",  cls: "text-gray-400 bg-gray-800/30 border-gray-700" },
 };
 
+function gradeFromWpm(wpm: number): string {
+  if (wpm >= 45) return "legend";
+  if (wpm >= 35) return "good";
+  if (wpm >= 25) return "pass";
+  return "fail";
+}
+
 function RankMedal({ rank }: { rank: number }) {
   if (rank === 1) return <span className="text-xl">🥇</span>;
   if (rank === 2) return <span className="text-xl">🥈</span>;
@@ -40,7 +47,7 @@ function ScoreRow({
   rank: number;
   showRank: boolean;
 }) {
-  const badge = GRADE_BADGE[entry.grade] ?? GRADE_BADGE.pass;
+  const badge = GRADE_BADGE[gradeFromWpm(entry.wpm)];
   return (
     <motion.div
       initial={{ opacity: 0, x: -8 }}
