@@ -104,8 +104,9 @@ export default function LeaderboardPage() {
         setRecent(recentData);
         setRanking(rankingData);
       } catch (e) {
-        console.error(e);
-        setError("데이터를 불러오지 못했어요.");
+        console.error("leaderboard load error:", e);
+        const msg = e instanceof Error ? e.message : String(e);
+        setError(`데이터를 불러오지 못했어요: ${msg}`);
       } finally {
         setLoading(false);
       }

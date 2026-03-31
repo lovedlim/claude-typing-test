@@ -310,8 +310,10 @@ export default function ResultPage() {
       });
       setSubmitted(true);
       setDupWarning(false);
-    } catch {
-      setSubmitError("등록에 실패했어요. 다시 시도해주세요.");
+    } catch (e) {
+      console.error("submitScore error:", e);
+      const msg = e instanceof Error ? e.message : String(e);
+      setSubmitError(`등록 실패: ${msg}`);
     } finally {
       setSubmitting(false);
       setPendingSubmit(false);
