@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Claude Code 교육 입장 테스트",
-  description: "Claude Code 교육 참여를 위한 영타 속도 테스트 — 40 WPM 이상이면 교육 신청 가능",
+  description: "Claude Code 교육 참여를 위한 영타 속도 테스트 — 45 WPM 이상이면 교육 신청 가능",
 };
 
 export default function RootLayout({

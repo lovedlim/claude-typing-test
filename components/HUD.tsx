@@ -55,9 +55,9 @@ export default function HUD({
   commandsCompleted,
 }: HUDProps) {
   const wpmColor =
-    wpm >= 40
+    wpm >= 45
       ? "text-amber-400"
-      : wpm >= 30
+      : wpm >= 35
         ? "text-cyan-400"
         : wpm >= 25
           ? "text-green-400"

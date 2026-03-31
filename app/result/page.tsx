@@ -408,9 +408,9 @@ export default function ResultPage() {
               >
                 {[
                   { min: 0,  max: 24,  label: "😅",  active: gradeInfo.grade === "fail" },
-                  { min: 25, max: 29,  label: "👍",  active: gradeInfo.grade === "pass" },
-                  { min: 30, max: 39,  label: "😎",  active: gradeInfo.grade === "good" },
-                  { min: 40, max: null, label: "🤩", active: gradeInfo.grade === "legend" },
+                  { min: 25, max: 34,  label: "👍",  active: gradeInfo.grade === "pass" },
+                  { min: 35, max: 44,  label: "😎",  active: gradeInfo.grade === "good" },
+                  { min: 45, max: null, label: "🤩", active: gradeInfo.grade === "legend" },
                 ].map((tier, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <div className={`px-3 py-1.5 rounded text-xs transition-all ${tier.active ? `${gradeInfo.badgeBgClass} ${gradeInfo.badgeTextClass} border ${gradeInfo.badgeBorderClass} font-bold` : "text-gray-700 border border-gray-800"}`}>

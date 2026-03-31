@@ -11,10 +11,6 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID?.trim(),
 };
 
-console.log("🔧 Firebase config:", {
-  projectId: firebaseConfig.projectId,
-  apiKey: firebaseConfig.apiKey ? firebaseConfig.apiKey.slice(0, 10) + "..." : "❌ MISSING",
-});
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 export const db = getFirestore(app);

@@ -74,13 +74,16 @@ function ScoreRow({
         </p>
       </div>
       <div className="flex-shrink-0 text-right">
-        <span
-          className={`text-xl font-black font-mono tabular-nums
-            ${entry.wpm >= 40 ? "text-amber-400" : entry.wpm >= 30 ? "text-cyan-400" : "text-green-400"}`}
-        >
-          {entry.wpm}
-        </span>
-        <span className="text-xs text-gray-600 font-mono block">WPM</span>
+        <div className="flex items-baseline gap-1 justify-end">
+          <span
+            className={`text-xl font-black font-mono tabular-nums
+              ${entry.wpm >= 45 ? "text-amber-400" : entry.wpm >= 35 ? "text-cyan-400" : "text-green-400"}`}
+          >
+            {entry.wpm}
+          </span>
+          <span className="text-xs text-gray-600 font-mono">WPM</span>
+        </div>
+        <span className="text-[10px] text-gray-500 font-mono tabular-nums block">{entry.accuracy}%</span>
       </div>
     </motion.div>
   );
@@ -97,25 +100,15 @@ export default function LeaderboardPage() {
   useEffect(() => {
     async function load() {
       try {
-        console.log("🔥 Firebase 연결 시도...");
-        const recentData = await getRecentScores(15).catch((e) => {
-          console.error("❌ getRecentScores 에러:", e?.code, e?.message, e);
-          throw e;
-        });
-        console.log("✅ getRecentScores 성공:", recentData.length);
-
-        const rankingData = await (tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50)).catch((e) => {
-          console.error("❌ getRanking 에러:", e?.code, e?.message, e);
-          throw e;
-        });
-        console.log("✅ getRanking 성공:", rankingData.length);
-
+        const [recentData, rankingData] = await Promise.all([
+          getRecentScores(15),
+          tab === "monthly" ? getMonthlyRanking(50) : getAllTimeRanking(50),
+        ]);
         setRecent(recentData);
         setRanking(rankingData);
       } catch (e) {
         console.error("leaderboard load error:", e);
-        const err = e as { code?: string; message?: string };
-        const msg = err.code ? `[${err.code}] ${err.message}` : (e instanceof Error ? e.message : String(e));
+        const msg = e instanceof Error ? e.message : String(e);
         setError(`데이터를 불러오지 못했어요: ${msg}`);
       } finally {
         setLoading(false);

@@ -285,7 +285,7 @@ export default function HomePage() {
                     <span className="text-green-400 font-semibold">
                       25 WPM 이상
                     </span>
-                    이면 교육 신청이 가능합니다. 30·40 WPM은 특별 등급!
+                    이면 교육 신청이 가능합니다. 35·45 WPM은 특별 등급!
                   </motion.p>
                 </div>
 

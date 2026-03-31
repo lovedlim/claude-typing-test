@@ -60,7 +60,8 @@ export async function getAllTimeRanking(count = 50): Promise<ScoreEntry[]> {
     limit(count)
   );
   const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as ScoreEntry));
+  const entries = snap.docs.map((d) => ({ id: d.id, ...d.data() } as ScoreEntry));
+  return entries.sort((a, b) => b.wpm - a.wpm || b.accuracy - a.accuracy);
 }
 
 // 월간 랭킹 (이번 달, WPM 순)
@@ -75,7 +76,7 @@ export async function getMonthlyRanking(count = 50): Promise<ScoreEntry[]> {
   );
   const snap = await getDocs(q);
   const entries = snap.docs.map((d) => ({ id: d.id, ...d.data() } as ScoreEntry));
-  return entries.sort((a, b) => b.wpm - a.wpm).slice(0, count);
+  return entries.sort((a, b) => b.wpm - a.wpm || b.accuracy - a.accuracy).slice(0, count);
 }
 
 export function formatTime(ts: Timestamp | Date): string {

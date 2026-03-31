@@ -594,9 +594,9 @@ export default function TestPage() {
           <div className="flex items-center justify-between text-xs font-mono">
             <span className="text-gray-500">WPM 진행도</span>
             <span className="text-gray-500">
-              {wpm >= 40
+              {wpm >= 45
                 ? <span className="text-amber-400 font-bold">🤩 혹시 직업이 개발자세요?</span>
-                : wpm >= 30
+                : wpm >= 35
                   ? <span className="text-cyan-400 font-bold">😎 오 제법인데요?</span>
                   : wpm >= 25
                     ? <span className="text-green-400 font-bold">👍 오케이, 들어와요</span>
@@ -607,9 +607,9 @@ export default function TestPage() {
           <div className="relative h-3 bg-gray-800 rounded-full overflow-hidden">
             <motion.div
               className={`h-full rounded-full transition-colors duration-500 ${
-                wpm >= 40
+                wpm >= 45
                   ? "bg-amber-400"
-                  : wpm >= 30
+                  : wpm >= 35
                     ? "bg-cyan-500"
                     : wpm >= 25
                       ? "bg-green-500"
@@ -617,8 +617,8 @@ export default function TestPage() {
               }`}
               style={{
                 boxShadow:
-                  wpm >= 40 ? "0 0 14px rgba(245,158,11,0.7)"
-                  : wpm >= 30 ? "0 0 12px rgba(6,182,212,0.6)"
+                  wpm >= 45 ? "0 0 14px rgba(245,158,11,0.7)"
+                  : wpm >= 35 ? "0 0 12px rgba(6,182,212,0.6)"
                   : wpm >= 25 ? "0 0 12px rgba(34,197,94,0.6)"
                   : undefined,
               }}
@@ -630,15 +630,15 @@ export default function TestPage() {
               className="absolute top-0 bottom-0 w-px bg-green-500 opacity-50"
               style={{ left: `${(25 / 60) * 100}%` }}
             />
-            {/* 30 WPM marker — 굿 */}
+            {/* 35 WPM marker — 굿 */}
             <div
               className="absolute top-0 bottom-0 w-px bg-cyan-400 opacity-50"
-              style={{ left: `${(30 / 60) * 100}%` }}
+              style={{ left: `${(35 / 60) * 100}%` }}
             />
-            {/* 40 WPM marker — 레전드 */}
+            {/* 45 WPM marker — 레전드 */}
             <div
               className="absolute top-0 bottom-0 w-px bg-amber-400 opacity-50"
-              style={{ left: `${(40 / 60) * 100}%` }}
+              style={{ left: `${(45 / 60) * 100}%` }}
             />
           </div>
           <div className="relative flex justify-between text-xs text-gray-700 font-mono">
@@ -651,15 +651,15 @@ export default function TestPage() {
             </span>
             <span
               className="absolute text-cyan-900"
-              style={{ left: `${(30 / 60) * 100}%`, transform: "translateX(-50%)" }}
+              style={{ left: `${(35 / 60) * 100}%`, transform: "translateX(-50%)" }}
             >
-              30
+              35
             </span>
             <span
               className="absolute text-amber-900"
-              style={{ left: `${(40 / 60) * 100}%`, transform: "translateX(-50%)" }}
+              style={{ left: `${(45 / 60) * 100}%`, transform: "translateX(-50%)" }}
             >
-              40
+              45
             </span>
             <span>60 WPM</span>
           </div>

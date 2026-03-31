@@ -49,7 +49,7 @@ export interface GradeInfo {
 }
 
 export function getGrade(wpm: number): GradeInfo {
-  if (wpm >= 40) {
+  if (wpm >= 45) {
     return {
       grade: "legend",
       label: "혹시 직업이 개발자세요?",
@@ -68,7 +68,7 @@ export function getGrade(wpm: number): GradeInfo {
       flashColor: "bg-amber-400",
     };
   }
-  if (wpm >= 30) {
+  if (wpm >= 35) {
     return {
       grade: "good",
       label: "오 제법인데요?",
